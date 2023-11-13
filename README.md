@@ -52,7 +52,7 @@ SHA256:hrp4bCmno/tU4Dml8zdqNjpXK5YbX54QnB0Y4Fkc2kU dafas@DESKTOP-I4U8C7E
 
 ssh -i ~/.ssh/aws_key ec2-user@44.204.113.211
 
-# Debug
+## Debug
 ssh -i ~/.ssh/aws_key -v ec2-user@3.221.159.188
 
 ssh -i ~/.ssh/aws_key -v ec2-user@44.204.113.21
