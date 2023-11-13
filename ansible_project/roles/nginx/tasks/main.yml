@@ -1,0 +1,17 @@
+---
+- name: Update package cache and upgrade packages
+  yum:
+    name: "*"
+    state: latest
+  when: ansible_distribution == "Amazon"
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Start Nginx service and enable it on boot
+  service:
+    name: nginx
+    state: started
+    enabled: yes

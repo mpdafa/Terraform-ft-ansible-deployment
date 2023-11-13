@@ -1,0 +1,45 @@
+---
+- name: Deploy Homepage
+  hosts: worker-node-1:worker-node-2:worker-node-3 
+  become: yes  # If required on worker nodes
+
+  tasks:
+    - name: Update package cache and upgrade packages
+      yum:
+        name: "*"
+        state: latest
+      when: ansible_distribution == "Amazon"
+
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service and enable it on boot
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Copy index.html to web servers
+      copy:
+        src: /path/to/your/index.html  # Update with the path to your index.html file
+        dest: /usr/share/nginx/html/index.html
+        owner: nginx
+        group: nginx
+        mode: "0644"
+
+    - name: Configure Nginx to serve the webpage on a specific port
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload Nginx
+
+  handlers:
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Ansible</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hi and Welcome to Ansible!</h1>
+    <p>This is a simple static webpage created by Dafa :D</p>
+    <p>Provisioned and Deployed using Terraform and Ansible.</p>
+    <button id="changeColorButton">Change Background Color</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // JavaScript code can be added here for additional functionality.
+            
+            const button = document.getElementById('changeColorButton');
+            const colors = ['#007bff', '#28a745', '#fd7e14', '#6f42c1', '#17a2b8'];
+            let currentIndex = 0;
+
+            button.addEventListener('click', function () {
+                document.body.style.backgroundColor = colors[currentIndex];
+                currentIndex = (currentIndex + 1) % colors.length;
+            });
+        });
+    </script>
+</body>
+</html>
