@@ -1,10 +1,18 @@
-
-
+## Command 
+```
+terraform init
+terraform plan
+terraform fmt 
+terraform apply --auto-approve
 terraform state list
-
 terraform show
-
+terraform plan -destroy # speculative destroy plan
+terraform destroy
 terraform state show aws_vpc.our_vpc
+```
+
+### State Output
+```
 -> resource "aws_vpc" "our_vpc" {
     arn                                  = "arn:aws:ec2:us-east-1:113296392243:vpc/vpc-0968cbac5f4fb1eb0"
     assign_generated_ipv6_cidr_block     = false
@@ -20,7 +28,7 @@ terraform state show aws_vpc.our_vpc
     instance_tenancy                     = "default"
     ipv6_netmask_length                  = 0
     main_route_table_id                  = "rtb-07e2b419912b369dd"
-    owner_id                             = "113296392243"
+    owner_id                             = "113296392243"https://github.com/mpdafa/terraform-ft-ansible-deployment/blob/main/README.md
     tags                                 = {
         "name" = "dev"
     }
@@ -28,50 +36,7 @@ terraform state show aws_vpc.our_vpc
         "name" = "dev"
     }
 }
-
-terraform destroy
-terraform plan -destroy # speculative destroy plan
-
-# Example new resource added on tf files on terraform plan
--> terraform plan
-aws_vpc.our_vpc: Refreshing state... [id=vpc-0968cbac5f4fb1eb0]
-
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-  + create
-
-Terraform will perform the following actions:
-
-  # aws_subnet.our_subnet will be created
-  + resource "aws_subnet" "our_subnet" {
-      + arn                                            = (known after apply)
-      + assign_ipv6_address_on_creation                = false
-      + availability_zone                              = "us-east-1"
-      + availability_zone_id                           = (known after apply)
-      + cidr_block                                     = "10.123.1.0/24"
-      + enable_dns64                                   = false
-      + enable_resource_name_dns_a_record_on_launch    = false
-      + enable_resource_name_dns_aaaa_record_on_launch = false
-      + id                                             = (known after apply)
-      + ipv6_cidr_block_association_id                 = (known after apply)
-      + ipv6_native                                    = false
-      + map_public_ip_on_launch                        = true
-      + owner_id                                       = (known after apply)
-      + private_dns_hostname_type_on_launch            = (known after apply)
-      + tags                                           = {
-          + "name" = "dev-public"
-        }
-      + tags_all                                       = {
-          + "name" = "dev-public"
-        }
-      + vpc_id                                         = "vpc-0968cbac5f4fb1eb0"
-    }
-
-Plan: 1 to add, 0 to change, 0 to destroy.
-
-terraform apply -auto-approve
-
-terraform fmt 
-
+```
 
 How to get AMI name : 
 aws ec2 describe-images --image-ids ami-0e8a34246278c21e4
