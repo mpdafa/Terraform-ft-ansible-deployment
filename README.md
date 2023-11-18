@@ -39,23 +39,21 @@ terraform state show aws_vpc.our_vpc
 ```
 
 How to get AMI name : 
+```
 aws ec2 describe-images --image-ids ami-0e8a34246278c21e4
+```
 
-
+Enter file in which to save the key (C:\Users\xxxx/.ssh/id_ed25519): C:\Users\xxxx/.ssh/aws_key 
+```
 ssh-keygen -t ed25519
--> Enter file in which to save the key (C:\Users\dafas/.ssh/id_ed25519): C:\Users\dafas/.ssh/aws_key 
-
 ls ~/.ssh
-
-The key fingerprint is:
-SHA256:hrp4bCmno/tU4Dml8zdqNjpXK5YbX54QnB0Y4Fkc2kU dafas@DESKTOP-I4U8C7E
-
 ssh -i ~/.ssh/aws_key ec2-user@44.204.113.211
-
+```
 ## Debug
-ssh -i ~/.ssh/aws_key -v ec2-user@3.221.159.188
-
-ssh -i ~/.ssh/aws_key -v ec2-user@44.204.113.21
+```
+ssh -i ~/.ssh/aws_key -v ec2-user@3.221.159.188 # Control node
+ssh -i ~/.ssh/aws_key -v ec2-user@44.204.113.21 # Worker node
+```
 
 # linux
 terraform show | grep "private_ip"
