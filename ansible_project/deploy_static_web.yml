@@ -23,7 +23,7 @@
 
     - name: Copy index.html to web servers
       copy:
-        src: /path/to/your/index.html  # Update with the path to your index.html file
+        src: index.html 
         dest: /usr/share/nginx/html/index.html
         owner: nginx
         group: nginx
