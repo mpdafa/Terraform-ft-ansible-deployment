@@ -49,14 +49,17 @@ ssh-keygen -t ed25519
 ls ~/.ssh
 ssh -i ~/.ssh/aws_key ec2-user@44.204.113.211
 ```
-## Debug
+## SSH
+Linux
+```
+terraform show | grep "private_ip"
+```
+Windows
+```
+terraform show | findstr private_ip
+terraform show | findstr public_ip
+```
 ```
 ssh -i ~/.ssh/aws_key -v ec2-user@3.221.159.188 # Control node
 ssh -i ~/.ssh/aws_key -v ec2-user@44.204.113.21 # Worker node
 ```
-
-## linux
-terraform show | grep "private_ip"
-## windows
-terraform show | findstr private_ip
-terraform show | findstr public_ip
