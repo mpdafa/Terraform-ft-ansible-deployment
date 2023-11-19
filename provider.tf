@@ -14,7 +14,7 @@ terraform {
 # cd .\.aws\
 
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
   # shared_config_files      = ["~/.aws/conf"]
   shared_credentials_files = ["~/.aws/credentials"]
   # profile                  = "vscode"

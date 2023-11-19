@@ -12,7 +12,7 @@ resource "aws_subnet" "our_subnet" {
   vpc_id                  = aws_vpc.our_vpc.id
   cidr_block              = "10.123.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a"
+  availability_zone       = "us-east-2a"
   tags = {
     name = "dev-public"
   }
@@ -95,7 +95,7 @@ resource "aws_instance" "worker_nodes" {
   ami = data.aws_ami.server_ami.id
 
   tags = {
-    Name = "worker_node-${count.index + 1}"
+    Name = "worker-node-${count.index + 1}"
   }
 
   key_name = aws_key_pair.aws_key_pair.id
@@ -106,5 +106,8 @@ resource "aws_instance" "worker_nodes" {
   root_block_device {
     volume_size = 10
   }
+}
 
+output "private_ips" {
+  value = aws_instance.worker_nodes[*].private_ip
 }

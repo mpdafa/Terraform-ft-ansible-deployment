@@ -63,3 +63,5 @@ terraform show | findstr public_ip
 ssh -i ~/.ssh/aws_key -v ec2-user@3.221.159.188 # Control node
 ssh -i ~/.ssh/aws_key -v ec2-user@44.204.113.21 # Worker node
 ```
+
+hostname

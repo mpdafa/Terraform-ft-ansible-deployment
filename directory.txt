@@ -1,0 +1,15 @@
+terraform-ft-ansible-deployment-repo/
+    ├─ main.tf
+    ├─ datasources.tf
+    ├─ provider
+    ├─ ansible_project/
+    │     ├── roles/
+    │     │   └── nginx/
+    │     │       └── templates/
+    │     │            └── nginx.conf.j2
+    │     ├── deploy_homepage.yml
+    │     └── index.html
+    ├─ .terraform
+    ├─ terraform.tfstate
+    ├─ generate_inventory.sh
+    └─ userdata.tpl
