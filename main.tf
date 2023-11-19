@@ -90,7 +90,7 @@ resource "aws_instance" "control_node" {
 }
 
 resource "aws_instance" "worker_nodes" {
-  count = 3
+  count = 4
   instance_type = "t2.micro"
   ami = data.aws_ami.server_ami.id
 
@@ -101,13 +101,32 @@ resource "aws_instance" "worker_nodes" {
   key_name = aws_key_pair.aws_key_pair.id
   vpc_security_group_ids = [aws_security_group.our_dev_sg.id]
   subnet_id = aws_subnet.our_subnet.id
-  user_data = file("userdata.tpl")
 
   root_block_device {
     volume_size = 10
   }
+  
 }
 
-output "private_ips" {
+output "public_ips" {
   value = aws_instance.worker_nodes[*].private_ip
 }
+
+output "private_dns_list" {
+  value = aws_instance.worker_nodes[*].private_dns
+}
+
+# Local-exec provisioner to generate inventory file
+# resource "null_resource" "generate_inventory" {
+#   depends_on = [
+#     aws_instance.worker_nodes,
+#     aws_instance.control_node
+#   ]
+#   
+#   provisioner "local-exec" {
+#     command = <<-EOT
+#       sh .\generate_inventory.sh
+#     EOT
+#   }
+# }
+
